@@ -9,34 +9,34 @@
 # Note: if you run mongodb as a non-root user (recommended) you may
 # need to create and set permissions for this directory manually,
 # e.g., if the parent directory isn't mutable by the mongodb user.
-dbpath=/var/lib/mongodb
+dbpath = <%= dbpath_real %>
 
 #where to log
-logpath=/var/log/mongodb/mongodb.log
+logpath = <%= logpath_real %>
 
-logappend=true
+logappend = <%= logappend_real %>
 
-#port = 27017
+port = <%= port_real%>
 
 # Disables write-ahead journaling
-# nojournal = true
+nojournal = <%= nojournal_real %>
 
 # Enables periodic logging of CPU utilization and I/O wait
-#cpu = true
+cpu = <%= cpu_real %>
 
-# Turn on/off security.  Off is currently the default
+# Turn on/off security. Off is currently the default
 #noauth = true
-auth = false 
+auth = <%= auth_real %>
 
 # Verbose logging output.
-#verbose = true
+verbose = <%= verbose_real %>
 
 # Inspect all client data for validity on receipt (useful for
 # developing drivers)
-#objcheck = true
+objcheck = <%= objcheck_real %>
 
 # Enable db quota management
-#quota = true
+quota = <%= quota_real %>
 
 # Set oplogging level where n is
 #   0=off (default)
@@ -44,47 +44,64 @@ auth = false
 #   2=R
 #   3=both
 #   7=W+some reads
-#diaglog = 0
+diaglog = <%= diaglog_real %>
 
 # Ignore query hints
 #nohints = true
 
 # Disable the HTTP interface (Defaults to localhost:28017).
-#nohttpinterface = true
+nohttpinterface = <%= nohttpinterface_real %>
 
 # Turns off server-side scripting.  This will result in greatly limited
 # functionality
-#noscripting = true
+noscripting = <%= noscripting_real %>
 
 # Turns off table scans.  Any query that would do a table scan fails.
-#notablescan = true
+notablescan = <%= notablescan_real %>
 
 # Disable data file preallocation.
-#noprealloc = true
+noprealloc = <%= noprealloc_real %>
 
 # Specify .ns file size for new databases.
-# nssize = <size>
+nssize = <%= nssize_real %>
 
+<% if @mms_token_real %>
 # Accout token for Mongo monitoring server.
-#mms-token = <token>
+mms-token = <%= @mms_token_real %>
+<% end %>
 
+<% if @mms_name_real %>
 # Server name for Mongo monitoring server.
-#mms-name = <server-name>
+mms-name = <%= @mms_name_real %>
+<% end %>
 
+<% if @mms_interval_real %>
 # Ping interval for Mongo monitoring server.
-#mms-interval = <seconds>
+mms-interval = <%= @mms_interval_real %>
+<% end %>
 
 # Replication Options
 
 # in master/slave replicated mongo databases, specify here whether
 # this is a slave or master
-#slave = true
-#source = master.example.com
-# Slave only: specify a single database to replicate
-#only = master.example.com
-# or
-#master = true
-#source = slave.example.com
+<% if @slave_real %>
+slave = <%= @slave_real %>
+<% end %>
 
+<% if @master_real %>
+master = <%= @master_real %>
+<% end %>
+
+<% if @source_real %>
+source = <%= @source_real %>
+<% end %>
+
+<% if @only_real %>
+# Slave only: specify a single database to replicate
+only = <%= @only_real %>
+<% end %>
+
+<% if @replSet_real %>
 # in replica set configuration, specify the name of the replica set
-# replSet = setname 
+replSet = <%= @replSet_real %>
+<% end %>
