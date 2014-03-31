@@ -15,58 +15,45 @@ class mongodb::params {
   # MONGODB 10GEN PACKAGE SETUP
   #
 
-  $repo_name = $::mongodb_repo_name ? {
-    undef   => 'mongodb',
-    default => $::mongodb_repo_name
-  }
+  $repo_name = 'mongodb'
 
-  $repo_baseurl = $::mongodb_repo_baseurl ? {
-    undef   => $::operatingsystem ? {
+  $repo_baseurl = $::operatingsystem ? {
       Debian  => 'http://downloads-distro.mongodb.org/repo/debian-sysvinit/',
       Ubuntu  => 'http://downloads-distro.mongodb.org/repo/ubuntu-upstart',
+      /(RedHat|CentOS)/ => "http://downloads-distro.mongodb.org/repo/redhat/os/${architecture}/",
       default => fail("${::operatingsystem} is not supported by ${module_name}")
-    },
-    default => $::mongodb_repo_baseurl
-  }
+   }
 
-  $repo_key = $::mongodb_repo_key ? {
-    undef   => '7F0CEB10',
-    default => $::mongodb_repo_key
-  }
+  $repo_key = '7F0CEB10'
 
-  $repo_repos = $::virtualbox_repo_repos ? {
-    undef   => '10gen',
-    default => $::virtualbox_repo_release
-  }
+  $repo_repos = '10gen'
 
-  $repo_release = $::mongodb_repo_release ? {
-    undef   => $::osfamily ? {
-      'Debian' => 'dist',
-       default => fail("${::osfamily} is not supported by ${module_name}")
-    },
-    default => $::mongodb_repo_release
-  }
+  $repo_release = 'dist'
 
-  $repo_pin = $::mongodb_repo_pin ? {
-    undef   => 200,
-    default => $::mongodb_repo_pin
-  }
+  $repo_pin = 200
 
-  $dist_package = $::osfamily ? {
+  $repo_key_source = 'http://docs.mongodb.org/10gen-gpg-key.asc'
+
+  $repo_gpgcheck = $::osfamily ? {
+    'Debian' => 1,
+    'RedHat' => 0, # no signed rpms available - see https://jira.mongodb.org/browse/SERVER-8770
+    default  => fail("${::osfamily} is not supported by ${module_name}")
+  }
+  $repo_enabled = 1
+
+  $package_name = $::osfamily ? {
     'Debian' => 'mongodb-10gen',
+    'RedHat' => 'mongo-10gen-server',
     default  => fail("${::osfamily} is not supported by ${module_name}")
   }
 
-  $package = $::mongodb_package ? {
-    undef   => $dist_package,
-    default => $::mongodb_package
-  }
+  $package_version = 'installed'
 
-  $version = $::mongodb_version ? {
-    undef   => 'installed',
-    default => $::mongodb_version
+  $service_name = $::osfamily ? {
+    'Debian' => 'mongodb',
+    'RedHat' => 'mongod',
+    default  => fail("${::osfamily} is not supported by ${module_name}")
   }
-
 
   #
   #  MONGODB TEMPLATE PARAMS

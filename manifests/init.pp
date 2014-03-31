@@ -14,14 +14,17 @@
 # Copyright 2013 synyx GmbH & Co. KG
 #
 class mongodb (
-  $package         = 'UNSET',
-  $version         = 'UNSET',
-  $repo_name       = 'UNSET',
-  $repo_baseurl    = 'UNSET',
-  $repo_key        = 'UNSET',
-  $repo_repos      = 'UNSET',
-  $repo_release    = 'UNSET',
-  $repo_pin        = 'UNSET',
+  $package         = $mongodb::params::package_name,
+  $version         = $mongodb::params::package_version,
+  $service         = $mongodb::params::service_name,
+  $repo_name       = $mongodb::params::repo_name,
+  $repo_baseurl    = $mongodb::params::repo_baseurl,
+  $repo_key_source = $mongodb::params::repo_key_source,
+  $repo_repos      = $mongodb::params::repo_repos,
+  $repo_release    = $mongodb::params::repo_release,
+  $repo_pin        = $mongodb::params::repo_pin,
+  $repo_gpgcheck   = $mongodb::params::repo_gpgcheck,
+  $repo_enabled    = $mongodb::params::repo_enabled,
   $dbpath          = "UNSET",
   $logpath         = "UNSET",
   $logappend       = "UNSET",
@@ -46,61 +49,23 @@ class mongodb (
   $source          = "UNSET",
   $only            = "UNSET",
   $replset         = "UNSET",
-) {
-
-  include mongodb::params
-
-  $package_real = $package ? {
-    'UNSET' => $::mongodb::params::package,
-    default => $package,
-  }
-
-  $version_real = $version ? {
-    'UNSET' => $::mongodb::params::version,
-    default => $version,
-  }
-
-  $repo_name_real = $repo_name ? {
-    'UNSET' => $::mongodb::params::repo_name,
-    default => $repo_name,
-  }
-
-  $repo_baseurl_real = $repo_baseurl ? {
-    'UNSET' => $::mongodb::params::repo_baseurl,
-    default => $repo_baseurl,
-  }
-
-  $repo_key_real = $repo_key ? {
-    'UNSET' => $::mongodb::params::repo_key,
-    default => $repo_key,
-  }
-
-  $repo_repos_real = $repo_repos ? {
-    'UNSET' => $::mongodb::params::repo_repos,
-    default => $repo_repos,
-  }
-
-  $repo_release_real = $repo_release ? {
-    'UNSET' => $::mongodb::params::repo_release,
-    default => $repo_release,
-  }
-
-  $repo_pin_real = $repo_pin ? {
-    'UNSET' => $::mongodb::params::repo_pin,
-    default => $repo_pin,
-  }
+) inherits mongodb::params {
 
   anchor {'mongodb::start': }->
+  class { 'mongodb::repo':
+    repo_name  => $repo_name,
+    baseurl    => $repo_baseurl,
+    key_source => $repo_key_source,
+    repos      => $repo_repos,
+    release    => $repo_release,
+    pin        => $repo_pin,
+    gpgcheck   => $repo_gpgcheck,
+    enabled    => $repo_enabled,
+  } ->
   class {'mongodb::package':
-    repo_name    => $repo_name_real,
-    repo_baseurl => $repo_baseurl_real,
-    repo_key     => $repo_key_real,
-    repo_repos   => $repo_repos_real,
-    repo_release => $repo_release_real,
-    repo_pin     => $repo_pin_real,
-    package      => $package_real,
-    version      => $version_real,
-  } ~>
+    package      => $package,
+    version      => $version,
+  } ->
   class {'mongodb::configure':
     dbpath          => $dbpath,
     logpath         => $logpath,
@@ -126,8 +91,10 @@ class mongodb (
     source          => $source,
     only            => $only,
     replset         => $replset,
-  }~>
-  class {'mongodb::service': } ~>
+  } ~>
+  class {'mongodb::service':
+    name => $service,
+  } ->
   anchor {'mongodb::end':}
 
 }

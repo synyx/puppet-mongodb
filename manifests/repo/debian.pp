@@ -13,7 +13,7 @@ class mongodb::repo::debian (
   $baseurl,
   $release,
   $repos,
-  $key,
+  $key_source,
   $pin
 ) {
 
@@ -21,7 +21,8 @@ class mongodb::repo::debian (
     location => $baseurl,
     release => $release,
     repos => $repos,
-    key => $key,
+    key => $repo_name,
+    key_source => $key_source,
     pin => $pin,
     include_src => false,
   }
