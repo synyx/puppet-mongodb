@@ -9,34 +9,34 @@
 # Note: if you run mongodb as a non-root user (recommended) you may
 # need to create and set permissions for this directory manually,
 # e.g., if the parent directory isn't mutable by the mongodb user.
-dbpath = <%= dbpath_real %>
+dbpath = <%= @dbpath_real %>
 
 #where to log
-logpath = <%= logpath_real %>
+logpath = <%= @logpath_real %>
 
-logappend = <%= logappend_real %>
+logappend = <%= @logappend_real %>
 
-port = <%= port_real%>
+port = <%= @port_real%>
 
 # Disables write-ahead journaling
-nojournal = <%= nojournal_real %>
+nojournal = <%= @nojournal_real %>
 
 # Enables periodic logging of CPU utilization and I/O wait
-cpu = <%= cpu_real %>
+cpu = <%= @cpu_real %>
 
 # Turn on/off security. Off is currently the default
 #noauth = true
-auth = <%= auth_real %>
+auth = <%= @auth_real %>
 
 # Verbose logging output.
-verbose = <%= verbose_real %>
+verbose = <%= @verbose_real %>
 
 # Inspect all client data for validity on receipt (useful for
 # developing drivers)
-objcheck = <%= objcheck_real %>
+objcheck = <%= @objcheck_real %>
 
 # Enable db quota management
-quota = <%= quota_real %>
+quota = <%= @quota_real %>
 
 # Set oplogging level where n is
 #   0=off (default)
@@ -44,26 +44,26 @@ quota = <%= quota_real %>
 #   2=R
 #   3=both
 #   7=W+some reads
-diaglog = <%= diaglog_real %>
+diaglog = <%= @diaglog_real %>
 
 # Ignore query hints
 #nohints = true
 
 # Disable the HTTP interface (Defaults to localhost:28017).
-nohttpinterface = <%= nohttpinterface_real %>
+nohttpinterface = <%= @nohttpinterface_real %>
 
 # Turns off server-side scripting.  This will result in greatly limited
 # functionality
-noscripting = <%= noscripting_real %>
+noscripting = <%= @noscripting_real %>
 
 # Turns off table scans.  Any query that would do a table scan fails.
-notablescan = <%= notablescan_real %>
+notablescan = <%= @notablescan_real %>
 
 # Disable data file preallocation.
-noprealloc = <%= noprealloc_real %>
+noprealloc = <%= @noprealloc_real %>
 
 # Specify .ns file size for new databases.
-nssize = <%= nssize_real %>
+nssize = <%= @nssize_real %>
 
 <% if @mms_token_real %>
 # Accout token for Mongo monitoring server.
@@ -105,3 +105,4 @@ only = <%= @only_real %>
 # in replica set configuration, specify the name of the replica set
 replSet = <%= @replSet_real %>
 <% end %>
+
