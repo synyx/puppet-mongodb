@@ -9,34 +9,34 @@
 # Note: if you run mongodb as a non-root user (recommended) you may
 # need to create and set permissions for this directory manually,
 # e.g., if the parent directory isn't mutable by the mongodb user.
-dbpath = <%= @dbpath_real %>
+dbpath = <%= @dbpath %>
 
 #where to log
-logpath = <%= @logpath_real %>
+logpath = <%= @logpath %>
 
-logappend = <%= @logappend_real %>
+logappend = <%= @logappend %>
 
-port = <%= @port_real%>
+port = <%= @port%>
 
 # Disables write-ahead journaling
-nojournal = <%= @nojournal_real %>
+nojournal = <%= @nojournal %>
 
 # Enables periodic logging of CPU utilization and I/O wait
-cpu = <%= @cpu_real %>
+cpu = <%= @cpu %>
 
 # Turn on/off security. Off is currently the default
 #noauth = true
-auth = <%= @auth_real %>
+auth = <%= @auth %>
 
 # Verbose logging output.
-verbose = <%= @verbose_real %>
+verbose = <%= @verbose %>
 
 # Inspect all client data for validity on receipt (useful for
 # developing drivers)
-objcheck = <%= @objcheck_real %>
+objcheck = <%= @objcheck %>
 
 # Enable db quota management
-quota = <%= @quota_real %>
+quota = <%= @quota %>
 
 # Set oplogging level where n is
 #   0=off (default)
@@ -44,65 +44,65 @@ quota = <%= @quota_real %>
 #   2=R
 #   3=both
 #   7=W+some reads
-diaglog = <%= @diaglog_real %>
+diaglog = <%= @diaglog %>
 
 # Ignore query hints
 #nohints = true
 
 # Disable the HTTP interface (Defaults to localhost:28017).
-nohttpinterface = <%= @nohttpinterface_real %>
+nohttpinterface = <%= @nohttpinterface %>
 
 # Turns off server-side scripting.  This will result in greatly limited
 # functionality
-noscripting = <%= @noscripting_real %>
+noscripting = <%= @noscripting %>
 
 # Turns off table scans.  Any query that would do a table scan fails.
-notablescan = <%= @notablescan_real %>
+notablescan = <%= @notablescan %>
 
 # Disable data file preallocation.
-noprealloc = <%= @noprealloc_real %>
+noprealloc = <%= @noprealloc %>
 
 # Specify .ns file size for new databases.
-nssize = <%= @nssize_real %>
+nssize = <%= @nssize %>
 
-<% if @mms_token_real %>
+<% if @mms_token %>
 # Accout token for Mongo monitoring server.
-mms-token = <%= @mms_token_real %>
+mms-token = <%= @mms_token %>
 <% end %>
 
-<% if @mms_name_real %>
+<% if @mms_name %>
 # Server name for Mongo monitoring server.
-mms-name = <%= @mms_name_real %>
+mms-name = <%= @mms_name %>
 <% end %>
 
-<% if @mms_interval_real %>
+<% if @mms_interval %>
 # Ping interval for Mongo monitoring server.
-mms-interval = <%= @mms_interval_real %>
+mms-interval = <%= @mms_interval %>
 <% end %>
 
 # Replication Options
 
 # in master/slave replicated mongo databases, specify here whether
 # this is a slave or master
-<% if @slave_real %>
-slave = <%= @slave_real %>
+<% if @slave %>
+slave = <%= @slave %>
 <% end %>
 
-<% if @master_real %>
-master = <%= @master_real %>
+<% if @master %>
+master = <%= @master %>
 <% end %>
 
-<% if @source_real %>
-source = <%= @source_real %>
+<% if @source %>
+source = <%= @source %>
 <% end %>
 
-<% if @only_real %>
+<% if @only %>
 # Slave only: specify a single database to replicate
-only = <%= @only_real %>
+only = <%= @only %>
 <% end %>
 
-<% if @replSet_real %>
+<% if @replSet %>
 # in replica set configuration, specify the name of the replica set
-replSet = <%= @replSet_real %>
+replSet = <%= @replSet %>
 <% end %>
 

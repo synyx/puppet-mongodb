@@ -8,11 +8,13 @@
 #
 # Copyright 2013 synyx GmbH & Co. KG
 #
-class mongodb::service($name) {
+class mongodb::service(
+  $name
+) {
 
   service {'mongodb':
-    name   => $name,
     ensure => running,
+    name   => $name,
     enable => true,
   }
 

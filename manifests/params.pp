@@ -14,15 +14,14 @@ class mongodb::params {
   #
   # MONGODB 10GEN PACKAGE SETUP
   #
-
   $repo_name = 'mongodb'
 
   $repo_baseurl = $::operatingsystem ? {
       Debian  => 'http://downloads-distro.mongodb.org/repo/debian-sysvinit/',
       Ubuntu  => 'http://downloads-distro.mongodb.org/repo/ubuntu-upstart',
-      /(RedHat|CentOS)/ => "http://downloads-distro.mongodb.org/repo/redhat/os/${architecture}/",
+      /(RedHat|CentOS)/ => "http://downloads-distro.mongodb.org/repo/redhat/os/${::architecture}/",
       default => fail("${::operatingsystem} is not supported by ${module_name}")
-   }
+  }
 
   $repo_key = '7F0CEB10'
 
@@ -39,6 +38,7 @@ class mongodb::params {
     'RedHat' => 0, # no signed rpms available - see https://jira.mongodb.org/browse/SERVER-8770
     default  => fail("${::osfamily} is not supported by ${module_name}")
   }
+
   $repo_enabled = 1
 
   $package_name = $::osfamily ? {
@@ -55,120 +55,41 @@ class mongodb::params {
     default  => fail("${::osfamily} is not supported by ${module_name}")
   }
 
+
   #
   #  MONGODB TEMPLATE PARAMS
   #
 
-  $dbpath = $::mongodb_dbpath ? {
-    undef   => '/var/lib/mongodb',
-    default => $::mongodb_dbpath
-  }
+  $config_dbpath = '/var/lib/mongodb'
 
-  $logpath = $::mongodb_logpath ? {
-    undef   => '/var/log/mongodb/mongodb.log',
-    default => $::mongodb_logpath
-  }
+  $config_logpath = '/var/log/mongodb/mongodb.log'
 
-  $logappend = $::mongodb_logappend ? {
-    undef   => true,
-    default => $::mongodb_logappend
-  }
+  $config_logappend = true
 
-  $port = $::mongodb_port ? {
-    undef   => 27017,
-    default => $::mongodb_port
-  }
+  $config_port = 27017
 
-  $nojournal = $::mongodb_nojournal ? {
-    undef   => false,
-    default => $::mongodb_nojournal
-  }
+  $config_nojournal = false
 
-  $cpu = $::mongodb_cpu ? {
-    undef   => false,
-    default => $::mongodb_cpu
-  }
+  $config_cpu = false
 
-  $auth = $::mongodb_auth ? {
-    undef   => false,
-    default => $::mongodb_auth
-  }
+  $config_auth = false
 
-  $verbose = $::mongodb_verbose ? {
-    undef   => false,
-    default => $::mongodb_verbose
-  }
-  
-  $objcheck = $::mongodb_objcheck ? {
-    undef   => true,
-    default => $::mongodb_objcheck
-  }
+  $config_verbose = false
 
-  $quota = $::mongodb_objcheck ? {
-    undef   => false,
-    default => $::mongodb_objcheck
-  }
+  $config_objcheck = true
 
-  $diaglog = $::mongodb_diaglog ? {
-    undef   => 0,
-    default => $::mongodb_diaglog
-  }
+  $config_quota = false
 
-  $nohttpinterface = $::mongodb_nohttpinterface ? {
-    undef   => false,
-    default => $::mongodb_nohttpinterface
-  }
+  $config_diaglog = 0
 
-  $noscripting = $::mongodb_noscripting ? {
-    undef   => false,
-    default => $::mongodb_noscripting
-  }
+  $config_nohttpinterface = false
 
-  $notablescan = $::mongodb_notablescan ? {
-    undef   => false,
-    default => $::mongodb_notablescan
-  }
+  $config_noscripting = false
 
-  $noprealloc = $::mongodb_noprealloc ? {
-    undef   => false,
-    default => $::mongodb_noprealloc
-  }
+  $config_notablescan = false
 
-  $nssize = $::mongodb_nssize ? {
-    undef   => 16,
-    default => $::mongodb_nssize
-  }
+  $config_noprealloc = false
 
-  $mms_token = $::mongodb_mms_token ? {
-    default => $::mongodb_mms_token
-  }
-
-  $mms_name = $::mongodb_mms_name ? {
-    default => $::mongodb_mms_name
-  }
-
-  $mms_interval = $::mongodb_mms_interval ? {
-    default => $::mongodb_mms_interval
-  }
-
-  $slave = $::mongodb_slave ? {
-    default => $::mongodb_slave
-  }
-
-  $master = $::mongodb_master ? {
-    default => $::mongodb_master
-  }
-
-  $source = $::mongodb_source ? {
-    default => $::mongodb_source
-  }
-
-  $only = $::mongodb_only ? {
-    default => $::mongodb_only
-  }
-
-  $replset = $::mongodb_replset ? {
-    default => $::mongodb_replset
-  }
+  $config_nssize = 16
 
 }
