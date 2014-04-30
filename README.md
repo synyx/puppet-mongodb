@@ -4,16 +4,16 @@
 
 ##Overview
 
-A Puppet module to install and manage mongodb from 10gen repository.
+A Puppet module to install and manage MongoDB. MongoDB packges are from [10gen](http://docs.mongodb.org/manual/installation/).
 
-Supported plattform:
+Supported plattforms:
 * Debian 7
 * Ubuntu 12.04
 * CentOS 6.5
 
 ## Installation
 
-This modules depends on:
+This module depends on:
 * [puppetlabs/apt](https://github.com/puppetlabs/puppetlabs-apt)
 * [puppetlabs/stdlib](https://github.com/puppetlabs/puppetlabs-stdlib)
 
@@ -27,10 +27,6 @@ git clone https://github.com/puppetlabs/puppetlabs-stdlib.git modules/stdlib
 
 ##Usage
 
-All options and configuration can be done through interacting with the parameters
-on the main mongodb class.
-
-
 ```puppet
 class { 'mongodb':}
 ```
@@ -41,5 +37,5 @@ class { 'mongodb':}
 
 ## License
 
-puppet-elasticsearch is released under the MIT License. See the bundled LICENSE file
+puppet-mongodb is released under the MIT License. See the bundled LICENSE file
 for details.
