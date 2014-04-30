@@ -9,6 +9,7 @@ A Puppet module to install and manage MongoDB. MongoDB packges are from [10gen](
 Supported plattforms:
 * Debian 7
 * Ubuntu 12.04
+* Ubuntu 14.04
 * CentOS 6.5
 
 ## Installation
