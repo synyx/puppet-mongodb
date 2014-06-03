@@ -41,11 +41,7 @@ class mongodb::params {
 
   $repo_enabled = 1
 
-  $package_name = $::osfamily ? {
-    'Debian' => 'mongodb-10gen',
-    'RedHat' => 'mongo-10gen-server',
-    default  => fail("${::osfamily} is not supported by ${module_name}")
-  }
+  $package_name = 'mongodb-org'
 
   $package_version = 'installed'
 
