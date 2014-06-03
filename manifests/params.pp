@@ -45,12 +45,7 @@ class mongodb::params {
 
   $package_version = 'installed'
 
-  $service_name = $::osfamily ? {
-    'Debian' => 'mongodb',
-    'RedHat' => 'mongod',
-    default  => fail("${::osfamily} is not supported by ${module_name}")
-  }
-
+  $service_name = 'mongod'
 
   #
   #  MONGODB TEMPLATE PARAMS
