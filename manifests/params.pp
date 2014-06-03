@@ -58,7 +58,7 @@ class mongodb::params {
 
   $config_dbpath = '/var/lib/mongodb'
 
-  $config_logpath = '/var/log/mongodb/mongodb.log'
+  $config_logpath = '/var/log/mongodb/mongod.log'
 
   $config_logappend = true
 
