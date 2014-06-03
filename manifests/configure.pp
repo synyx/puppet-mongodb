@@ -37,7 +37,6 @@ class mongodb::configure (
 
   file { '/etc/mongod.conf':
     ensure  => file,
-    notify  => Service['mongodb'],
     content => template("${module_name}/mongod.conf.erb"),
   }
 
