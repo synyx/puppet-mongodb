@@ -35,10 +35,10 @@ class mongodb::configure (
   $replset = undef,
 ) {
 
-  file { '/etc/mongodb.conf':
+  file { '/etc/mongod.conf':
     ensure  => file,
-    content => template("${module_name}/mongodb.conf.erb"),
     notify  => Service['mongodb'],
+    content => template("${module_name}/mongod.conf.erb"),
   }
 
 }
