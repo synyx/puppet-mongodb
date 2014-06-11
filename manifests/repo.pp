@@ -14,6 +14,7 @@ class mongodb::repo (
   $repos,
   $release,
   $pin,
+  $key,
   $key_source,
   $gpgcheck,
   $enabled,
@@ -27,6 +28,7 @@ class mongodb::repo (
       class {'mongodb::repo::debian':
         repo_name  => $repo_name,
         baseurl    => $baseurl,
+        key        => $key,
         key_source => $key_source,
         repos      => $repos,
         release    => $release,

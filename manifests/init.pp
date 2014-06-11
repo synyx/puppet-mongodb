@@ -19,6 +19,7 @@ class mongodb (
   $service                = $mongodb::params::service_name,
   $repo_name              = $mongodb::params::repo_name,
   $repo_baseurl           = $mongodb::params::repo_baseurl,
+  $repo_key               = $mongodb::params::repo_key,
   $repo_key_source        = $mongodb::params::repo_key_source,
   $repo_repos             = $mongodb::params::repo_repos,
   $repo_release           = $mongodb::params::repo_release,
@@ -58,6 +59,7 @@ class mongodb (
   class { 'mongodb::repo':
     repo_name  => $repo_name,
     baseurl    => $repo_baseurl,
+    key        => $repo_key,
     key_source => $repo_key_source,
     repos      => $repo_repos,
     release    => $repo_release,
