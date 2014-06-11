@@ -84,7 +84,7 @@ class mongodb (
     noscripting     => $config_noscripting,
     notablescan     => $config_notablescan,
     noprealloc      => $config_noprealloc,
-    nssize          => $config_noprealloc,
+    nssize          => $config_nssize,
     mms_token       => $config_mms_token,
     mms_name        => $config_mms_name,
     mms_interval    => $config_mms_interval,
