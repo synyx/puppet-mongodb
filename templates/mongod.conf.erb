@@ -16,7 +16,10 @@ logpath = <%= @logpath %>
 
 logappend = <%= @logappend %>
 
-port = <%= @port%>
+port = <%= @port %>
+
+# Listen to local interface only. Comment out to listen on all interfaces. 
+bind_ip = <%= @bind_ip %>
 
 # Disables write-ahead journaling
 nojournal = <%= @nojournal %>

@@ -13,6 +13,7 @@ class mongodb::configure (
   $logpath,
   $logappend,
   $port,
+  $bind_ip,
   $nojournal,
   $cpu,
   $auth,
