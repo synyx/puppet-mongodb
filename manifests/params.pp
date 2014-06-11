@@ -65,7 +65,7 @@ class mongodb::params {
 
   $config_auth = false
 
-  $config_verbose = false
+  $config_verbose = 'v' 
 
   $config_objcheck = true
 
