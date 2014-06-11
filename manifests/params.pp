@@ -51,7 +51,11 @@ class mongodb::params {
   #  MONGODB TEMPLATE PARAMS
   #
 
-  $config_dbpath = '/var/lib/mongodb'
+  $config_dbpath = $::osfamily ? {
+    'RedHat' => '/var/lib/mongo',
+    'Debian' => '/var/lib/mongodb',
+    default  => fail("${::osfamily} is not supported by ${module_name}")
+  }
 
   $config_logpath = '/var/log/mongodb/mongod.log'
 
