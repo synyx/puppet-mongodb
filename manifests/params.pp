@@ -60,10 +60,12 @@ class mongodb::params {
   $config_logpath = '/var/log/mongodb/mongod.log'
 
   $config_pidfile = $::osfamily ? {
+    'Debian' => undef,
     'RedHat' => '/var/run/mongodb/mongod.pid'
   }
 
   $config_fork = $::osfamily ? {
+    'Debian' => undef,
     'RedHat' => true
   }
 
