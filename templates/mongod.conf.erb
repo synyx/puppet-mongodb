@@ -16,6 +16,16 @@ logpath = <%= @logpath %>
 
 logappend = <%= @logappend %>
 
+<% if @fork %>
+# fork and run in background
+fork=<%= @fork %>
+<% end %>
+
+<% if @pidfile %>
+# location of pidfile
+pidfilepath=<%= @pidfile %>
+<% end %>
+
 port = <%= @port %>
 
 # Listen to local interface only. Comment out to listen on all interfaces. 

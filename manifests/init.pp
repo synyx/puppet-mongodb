@@ -27,6 +27,8 @@ class mongodb (
   $repo_enabled           = $mongodb::params::repo_enabled,
   $config_dbpath          = $mongodb::params::config_dbpath,
   $config_logpath         = $mongodb::params::config_logpath,
+  $config_pidfile         = $mongodb::params::config_pidfile,
+  $config_fork            = $mongodb::params::config_fork,
   $config_logappend       = $mongodb::params::config_logappend,
   $config_port            = $mongodb::params::config_port,
   $config_bind_ip         = $mongodb::params::config_bind_ip,
@@ -70,6 +72,8 @@ class mongodb (
   class {'mongodb::configure':
     dbpath          => $config_dbpath,
     logpath         => $config_logpath,
+    pidfile         => $config_pidfile,
+    fork            => $config_fork,
     logappend       => $config_logappend,
     port            => $config_port,
     bind_ip         => $config_bind_ip,

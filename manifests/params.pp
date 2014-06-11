@@ -59,6 +59,14 @@ class mongodb::params {
 
   $config_logpath = '/var/log/mongodb/mongod.log'
 
+  $config_pidfile = $::osfamily ? {
+    'RedHat' => '/var/run/mongodb/mongod.pid'
+  }
+
+  $config_fork = $::osfamily ? {
+    'RedHat' => true
+  }
+
   $config_logappend = true
 
   $config_port = 27017

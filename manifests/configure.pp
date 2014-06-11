@@ -26,6 +26,8 @@ class mongodb::configure (
   $notablescan,
   $noprealloc,
   $nssize,
+  $pidfile = undef,
+  $fork = undef,
   $mms_token = undef,
   $mms_name = undef,
   $mms_interval = undef,
