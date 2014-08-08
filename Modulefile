@@ -1,5 +1,5 @@
 name 'synyx-mongodb'
-version '0.4.0'
+version '0.4.1'
 author 'Johannes Graf'
 license 'MIT License'
 project_page 'https://github.com/synyx/puppet-mongodb'
