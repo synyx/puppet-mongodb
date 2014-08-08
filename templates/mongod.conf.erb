@@ -41,8 +41,12 @@ cpu = <%= @cpu %>
 #noauth = true
 auth = <%= @auth %>
 
+<% if @verbose %>
 # Verbose logging output.
 verbose = <%= @verbose %>
+<% else %>
+quiet = true
+<% end %>
 
 # Inspect all client data for validity on receipt (useful for
 # developing drivers)
